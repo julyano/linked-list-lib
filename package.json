@@ -1,0 +1,36 @@
+{
+  "name": "linked-list-lib",
+  "version": "1.0.0",
+  "description": "This package contain some possibilities of implementations of linked lists",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "jest --config jest.config.json",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "version": "git add -A src",
+    "postversion": "git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julyano/linked-list-lib.git"
+  },
+  "keywords": [
+    "lista", "encadeada", "linked list"
+  ],
+  "bugs": {
+    "url": "https://github.com/julyano/linked-list-lib/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5"
+  },
+  "author": "Juliano Cardoso",
+  "license": "MIT"
+}
