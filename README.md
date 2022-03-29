@@ -11,7 +11,7 @@ Contain some possibilities of implementations of linked lists
 ## Use
 
 ```ts
-    import { SinglyLinkedList } from 'linked-list-lib';
+import { SinglyLinkedList } from 'linked-list-lib';
 
 interface IData {
     title: string;
