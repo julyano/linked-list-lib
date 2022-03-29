@@ -1,6 +1,6 @@
 {
   "name": "linked-list-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This package contain some possibilities of implementations of linked lists",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,9 @@
     "url": "git+https://github.com/julyano/linked-list-lib.git"
   },
   "keywords": [
-    "lista", "encadeada", "linked list"
+    "lista",
+    "encadeada",
+    "linked list"
   ],
   "bugs": {
     "url": "https://github.com/julyano/linked-list-lib/issues"
