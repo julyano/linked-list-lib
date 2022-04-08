@@ -3,7 +3,7 @@ import { IPost } from './post.interface.test';
 
 const doublyLinkedList = new DoublyLinkedList<IPost>();
 const arrayData = [{ title: 'A'}, { title: 'B'}, { title: 'C'}]
-let testSize = 0;
+let listSize = 0;
 
 describe('[DLL] Testing null list', () => {
     test('[DLL] insertInBegin', () => {
@@ -27,10 +27,10 @@ describe('[DLL] Testing insertInBegin()', () => {
 
         for (const data of arrayData) {
             doublyLinkedList.insertInBegin(data);
-            testSize++;
+            listSize++;
             list = doublyLinkedList.traverse();
-            expect(list.length).toBe(testSize);
-            expect(doublyLinkedList.size()).toBe(testSize);
+            expect(list.length).toBe(listSize);
+            expect(doublyLinkedList.size()).toBe(listSize);
         }
 
         let result = doublyLinkedList.print('title');
@@ -42,79 +42,79 @@ describe('[DLL] Testing insertInBegin()', () => {
 describe('[DLL] Testing deleteNode()', () => {
     test('[DLL] delete first node', () => {
         let deletedNode = doublyLinkedList.deleteNode(arrayData[2]);
-        testSize--;
+        listSize--;
         let result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> A -> NULL');        
         expect(arrayData[2]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[2].title);
-        expect(doublyLinkedList.size()).toBe(testSize);
+        expect(doublyLinkedList.size()).toBe(listSize);
     });
 
     test('[DLL] delete middle node', () => {
         doublyLinkedList.insertInBegin(arrayData[2]);
-        testSize++;
+        listSize++;
         let result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> B -> A -> NULL');
-        expect(doublyLinkedList.size()).toBe(testSize);
+        expect(doublyLinkedList.size()).toBe(listSize);
         let deletedNode = doublyLinkedList.deleteNode(arrayData[1]);
         result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> A -> NULL');
-        testSize--;
+        listSize--;
         
         expect(arrayData[1]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[1].title);
-        expect(doublyLinkedList.size()).toBe(testSize);
+        expect(doublyLinkedList.size()).toBe(listSize);
     });
 
     test('[DLL] delete last node', () => {
         doublyLinkedList.insertInBegin(arrayData[1]);
-        testSize++;
+        listSize++;
         let result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> C -> A -> NULL');
-        expect(doublyLinkedList.size()).toBe(testSize);
+        expect(doublyLinkedList.size()).toBe(listSize);
         let deletedNode = doublyLinkedList.deleteNode(arrayData[0]);
         result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> C -> NULL');
-        testSize--;
+        listSize--;
         
         expect(arrayData[0]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[0].title);
-        expect(doublyLinkedList.size()).toBe(testSize);
+        expect(doublyLinkedList.size()).toBe(listSize);
     });
     
     test('[DLL] delete all nodes', () => {
         doublyLinkedList.insertInBegin(arrayData[0]);
-        testSize++;
+        listSize++;
         let result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:A -> B -> C -> NULL');
-        expect(doublyLinkedList.size()).toBe(testSize);
+        expect(doublyLinkedList.size()).toBe(listSize);
         let deletedNode = doublyLinkedList.deleteNode(arrayData[0]);
         result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> C -> NULL');
-        testSize--;
+        listSize--;
 
         deletedNode = doublyLinkedList.deleteNode(arrayData[1]);
         result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> NULL');
-        testSize--;
+        listSize--;
 
         deletedNode = doublyLinkedList.deleteNode(arrayData[2]);
         result = doublyLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('NULL');
-        testSize--;
+        listSize--;
         
         expect(arrayData[2]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[2].title);
-        expect(doublyLinkedList.size()).toBe(testSize);
+        expect(doublyLinkedList.size()).toBe(listSize);
     });
 });
 

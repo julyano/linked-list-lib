@@ -3,7 +3,7 @@ import { IPost } from './post.interface.test';
 
 const circularLinkedList = new CircularSinglyLinkedList<IPost>();
 const arrayData = [{ title: 'A'}, { title: 'B'}, { title: 'C'}]
-let testSize = 0;
+let listSize = 0;
 
 describe('[CSLL] Testing null list', () => {
     test('[CSLL] insertInBegin', () => {        
@@ -29,10 +29,10 @@ describe('[CSLL] Testing insertInBegin()', () => {
 
         for (const data of arrayData) {
             circularLinkedList.insertInBegin(data);
-            testSize++;
+            listSize++;
             list = circularLinkedList.traverse();            
-            expect(list.length).toBe(testSize);
-            expect(circularLinkedList.size()).toBe(testSize);
+            expect(list.length).toBe(listSize);
+            expect(circularLinkedList.size()).toBe(listSize);
         }
 
         let result = circularLinkedList.print('title');
@@ -44,80 +44,80 @@ describe('[CSLL] Testing insertInBegin()', () => {
 describe('[CSLL] Testing deleteNode()', () => {
     test('[CSLL] delete first node', () => {
         let deletedNode = circularLinkedList.deleteNode(arrayData[2]);
-        testSize--;
+        listSize--;
         let result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> A -> [HEAD]');
         
         expect(arrayData[2]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[2].title);
-        expect(circularLinkedList.size()).toBe(testSize);
+        expect(circularLinkedList.size()).toBe(listSize);
     });
 
     test('[CSLL] delete middle node', () => {
         circularLinkedList.insertInBegin(arrayData[2]);
-        testSize++;
+        listSize++;
         let result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> B -> A -> [HEAD]');
-        expect(circularLinkedList.size()).toBe(testSize);
+        expect(circularLinkedList.size()).toBe(listSize);
         let deletedNode = circularLinkedList.deleteNode(arrayData[1]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> A -> [HEAD]');
-        testSize--;
+        listSize--;
         
         expect(arrayData[1]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[1].title);
-        expect(circularLinkedList.size()).toBe(testSize);
+        expect(circularLinkedList.size()).toBe(listSize);
     });
 
     test('[CSLL] delete last node', () => {
         circularLinkedList.insertInBegin(arrayData[1]);
-        testSize++;
+        listSize++;
         let result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> C -> A -> [HEAD]');
-        expect(circularLinkedList.size()).toBe(testSize);
+        expect(circularLinkedList.size()).toBe(listSize);
         let deletedNode = circularLinkedList.deleteNode(arrayData[0]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> C -> [HEAD]');
-        testSize--;
+        listSize--;
         
         expect(arrayData[0]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[0].title);
-        expect(circularLinkedList.size()).toBe(testSize);
+        expect(circularLinkedList.size()).toBe(listSize);
     });
     
     test('[CSLL] delete all nodes', () => {
         circularLinkedList.insertInBegin(arrayData[0]);
-        testSize++;
+        listSize++;
         let result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:A -> B -> C -> [HEAD]');
-        expect(circularLinkedList.size()).toBe(testSize);
+        expect(circularLinkedList.size()).toBe(listSize);
         let deletedNode = circularLinkedList.deleteNode(arrayData[0]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> C -> [HEAD]');
-        testSize--;
+        listSize--;
 
         deletedNode = circularLinkedList.deleteNode(arrayData[1]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> [HEAD]');
-        testSize--;
+        listSize--;
 
         deletedNode = circularLinkedList.deleteNode(arrayData[2]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('NULL');
-        testSize--;
+        listSize--;
         
         expect(arrayData[2]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[2].title);
-        expect(circularLinkedList.size()).toBe(testSize);
+        expect(circularLinkedList.size()).toBe(listSize);
     });
 });
 
@@ -125,7 +125,7 @@ describe('[CSLL] Testing deleteFirstNode()', () => {
     test('[CSLL] deleteFirstNode', () => {
         for (const data of arrayData) {
             circularLinkedList.insertInBegin(data);
-            testSize++;
+            listSize++;
         }
 
         let result = circularLinkedList.print('title');
@@ -136,22 +136,22 @@ describe('[CSLL] Testing deleteFirstNode()', () => {
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:B -> A -> [HEAD]');
-        testSize--;
-        expect(circularLinkedList.size()).toBe(testSize);
+        listSize--;
+        expect(circularLinkedList.size()).toBe(listSize);
         deletedNode = circularLinkedList.deleteFirstNode();
         expect(deletedNode.data).toBe(arrayData[1]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:A -> [HEAD]');
-        testSize--;
-        expect(circularLinkedList.size()).toBe(testSize);
+        listSize--;
+        expect(circularLinkedList.size()).toBe(listSize);
         deletedNode = circularLinkedList.deleteFirstNode();
         expect(deletedNode.data).toBe(arrayData[0]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('NULL');
-        testSize--;
-        expect(circularLinkedList.size()).toBe(testSize);
+        listSize--;
+        expect(circularLinkedList.size()).toBe(listSize);
     });
 });
 
@@ -159,7 +159,7 @@ describe('[CSLL] Testing deleteLastNode()', () => {
     test('[CSLL] deleteLastNode', () => {
         for (const data of arrayData) {
             circularLinkedList.insertInBegin(data);
-            testSize++;
+            listSize++;
         }
 
         let result = circularLinkedList.print('title');
@@ -170,21 +170,21 @@ describe('[CSLL] Testing deleteLastNode()', () => {
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> B -> [HEAD]');
-        testSize--;
-        expect(circularLinkedList.size()).toBe(testSize);
+        listSize--;
+        expect(circularLinkedList.size()).toBe(listSize);
         deletedNode = circularLinkedList.deleteLastNode();
         expect(deletedNode.data).toBe(arrayData[1]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('[HEAD]:C -> [HEAD]');
-        testSize--;
-        expect(circularLinkedList.size()).toBe(testSize);
+        listSize--;
+        expect(circularLinkedList.size()).toBe(listSize);
         deletedNode = circularLinkedList.deleteLastNode();
         expect(deletedNode.data).toBe(arrayData[2]);
         result = circularLinkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('NULL');
-        testSize--;
-        expect(circularLinkedList.size()).toBe(testSize);
+        listSize--;
+        expect(circularLinkedList.size()).toBe(listSize);
     });
 });
