@@ -145,6 +145,13 @@ describe('[SLL] Testing deleteFirstNode()', () => {
     });
 });
 
+describe('[SLL] Testing firstNode()', () => {
+    test('[SLL] firstNode', () => {
+        let first = linkedList.firstNode();
+        expect(first.data).toBe(arrayData[2]);
+    });
+});
+
 describe('[SLL] Testing deleteLastNode()', () => {
     test('[SLL] deleteLastNode', () => {
         for (const data of arrayData) {

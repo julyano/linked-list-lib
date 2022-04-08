@@ -11,6 +11,10 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
     constructor(protected comparator: IComparator<T> = new Comparator<T>()) {
         this.comparator = comparator;
     }
+
+    firstNode(): BaseNodeLinkedList<T> {
+        return this.head;
+    }
     
     insertInBegin(data: T): BaseNodeLinkedList<T> {// O(1)
         const node = new BaseNodeLinkedList(data);// O(1)

@@ -10,5 +10,6 @@ export interface IBaseLinkedList<T> {
   size(): number;
   isEmpty(): boolean;
   search(data: T): any | null;
+  firstNode(): BaseNodeLinkedList<T>;
 }
   
