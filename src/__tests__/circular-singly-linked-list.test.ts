@@ -1,7 +1,7 @@
 import { CircularSinglyLinkedList } from '../index';
-import { IPost } from './post.interface.test';
+import { IData } from './data.interface.test';
 
-const circularLinkedList = new CircularSinglyLinkedList<IPost>();
+const circularLinkedList = new CircularSinglyLinkedList<IData<string>>();
 const arrayData = [{ title: 'A'}, { title: 'B'}, { title: 'C'}]
 let listSize = 0;
 
@@ -25,7 +25,7 @@ describe('[CSLL] Testing null list', () => {
 
 describe('[CSLL] Testing insertInBegin()', () => {
     test('[CSLL] insertInBegin', () => {
-        let list: IPost[] = [];
+        let list: IData<string>[] = [];
 
         for (const data of arrayData) {
             circularLinkedList.insertInBegin(data);

@@ -1,7 +1,7 @@
 import { CircularDoublyLinkedList } from '../index';
-import { IPost } from './post.interface.test';
+import { IData } from './data.interface.test';
 
-const circularLinkedList = new CircularDoublyLinkedList<IPost>();
+const circularLinkedList = new CircularDoublyLinkedList<IData<string>>();
 const arrayData = [{ title: 'A'}, { title: 'B'}, { title: 'C'}]
 let listSize = 0;
 
@@ -25,7 +25,7 @@ describe('[CDLL] Testing null list', () => {
 
 describe('[CDLL] Testing insertInBegin()', () => {
     test('[CDLL] insertInBegin', () => {
-        let list: IPost[] = [];
+        let list: IData<string>[] = [];
 
         for (const data of arrayData) {
             circularLinkedList.insertInBegin(data);

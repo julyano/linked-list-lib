@@ -17,7 +17,7 @@ interface IData {
     title: string;
 }
 
-const linkedList = new SinglyLinkedList<IData>();
+const linkedList = new SinglyLinkedList<IData<string>>();
 
 linkedList.insertInBegin({ title: 'A'});
 ```

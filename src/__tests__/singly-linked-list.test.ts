@@ -1,8 +1,8 @@
 import { SinglyLinkedList } from '../index';
-import { IPost } from './post.interface.test';
+import { IData } from './data.interface.test';
 
-const linkedList = new SinglyLinkedList<IPost>();
-const arrayData = [{ title: 'A'}, { title: 'B'}, { title: 'C'}]
+const linkedList = new SinglyLinkedList<IData<string>>();
+const arrayData = [{ title: 'A'}, { title: 'B'}, { title: 'C'}];
 let listSize = 0;
 
 describe('[SLL] Testing null list', () => {
@@ -23,7 +23,7 @@ describe('[SLL] Testing null list', () => {
 
 describe('[SLL] Testing insertInBegin()', () => {
     test('[SLL] insertInBegin', () => {
-        let list: IPost[] = [];
+        let list: IData<string>[] = [];
 
         for (const data of arrayData) {
             linkedList.insertInBegin(data);
@@ -67,6 +67,13 @@ describe('[SLL] Testing deleteNode()', () => {
         expect(arrayData[1]).toMatchObject(deletedNode.data);
         expect(deletedNode).toHaveProperty('data.title', arrayData[1].title);
         expect(linkedList.size()).toBe(listSize);
+    });
+
+    describe('[SLL] Testing firstNode()', () => {
+        test('[SLL] firstNode', () => {
+            let first = linkedList.firstNode();
+            expect(first.data).toBe(arrayData[2]);
+        });
     });
 
     test('[SLL] delete last node', () => {
@@ -142,13 +149,6 @@ describe('[SLL] Testing deleteFirstNode()', () => {
         result = linkedList.print('title');
         expect(result).toBeDefined();
         expect(result).toEqual<string>('NULL');
-    });
-});
-
-describe('[SLL] Testing firstNode()', () => {
-    test('[SLL] firstNode', () => {
-        let first = linkedList.firstNode();
-        expect(first.data).toBe(arrayData[2]);
     });
 });
 

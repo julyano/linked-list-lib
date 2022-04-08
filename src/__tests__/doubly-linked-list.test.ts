@@ -1,7 +1,7 @@
 import { DoublyLinkedList } from '../index';
-import { IPost } from './post.interface.test';
+import { IData } from './data.interface.test';
 
-const doublyLinkedList = new DoublyLinkedList<IPost>();
+const doublyLinkedList = new DoublyLinkedList<IData<string>>();
 const arrayData = [{ title: 'A'}, { title: 'B'}, { title: 'C'}]
 let listSize = 0;
 
@@ -23,7 +23,7 @@ describe('[DLL] Testing null list', () => {
 
 describe('[DLL] Testing insertInBegin()', () => {
     test('[DLL] insertInBegin', () => {
-        let list: IPost[] = [];
+        let list: IData<string>[] = [];
 
         for (const data of arrayData) {
             doublyLinkedList.insertInBegin(data);
