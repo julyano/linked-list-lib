@@ -5,6 +5,7 @@ import { ISinglyLinkedList } from "./singly-linked-list.interface";
 
 export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
     protected head: BaseNodeLinkedList<T> | null = null;
+    protected tail: BaseNodeLinkedList<T> | null = null;
     protected listSize = 0;
 
     constructor(protected comparator: IComparator<T> = new Comparator<T>()) {
@@ -17,8 +18,14 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
         if (this.head) {
             node.next = this.head;
         }
+
         
         this.head = node;
+       
+        if (!this.head.next) {
+            this.tail = this.head;
+        }
+
         this.listSize++;
         return node;
     }
@@ -34,6 +41,7 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
         
         if (!this.head.next) { // there is 1 node
             this.head = null;
+            this.tail = null;
             this.listSize--;
             
             return result;
@@ -48,6 +56,11 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
         }
 
         nodeToRemove.previousNode.next = nodeToRemove.currentNode.next;
+        
+        if(!nodeToRemove.currentNode.next) {
+            this.tail = nodeToRemove.previousNode;
+        }
+
         nodeToRemove.currentNode = null;
         this.listSize--;
         
@@ -63,11 +76,14 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
 
         if (!this.head.next) {
             this.head = null;
+            this.tail = null;
+            this.listSize--;
 
             return result;
         }
 
         this.head = this.head.next;
+        this.listSize--;
         
         return result;        
     }
@@ -81,26 +97,23 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
         
         if (!this.head.next) {
             this.head = null;
+            this.tail = null;
+            this.listSize--;
+
             return cursor;
         }
-        
-        let result = cursor;
 
-        while (cursor) {// O(n)
-            if (!cursor.next) {
-                let res = cursor;
-                result.next = cursor.next;
-                cursor = null;
-                return res;
-            }
-
-            if (cursor.next.next) {
-                cursor = cursor.next;
-                result = cursor;    
-            } else {
-                cursor = cursor.next;
-            }
+        while (cursor.next.next) {// O(n)
+            cursor = cursor.next;
         }
+
+        let result = this.tail;
+        this.tail = null;
+        this.tail = cursor;
+        this.tail.next = null;
+        this.listSize--;
+
+        return result;
     }
 
     traverse(): T[] {  // O(n)      
@@ -143,7 +156,7 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
     }
 
     isEmpty(): boolean {// O(1)
-        return !this.head;
+        return !this.head && !this.tail;
     }
 
     search(data: T): any | null{// O(n)
