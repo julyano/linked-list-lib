@@ -1,9 +1,9 @@
 export interface IData<T> {
-    title: T;
+    name: T;
 }
 
 test('Testing Data interface', () => {
-    let data: IData<string> = { title: 'test' };
-    expect(data).toHaveProperty('title', 'test');
+    let data: IData<string> = { name: 'test' };
+    expect(data).toHaveProperty('name', 'test');
     expect(data).not.toHaveProperty('other');
 });

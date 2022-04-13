@@ -136,8 +136,8 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
         return addToArray(this.head);
     }
 
-    print(referenceProperty: string): string {// O(n)     
-        if (this.isEmpty()) {
+    print(referenceProperty: string): string {// O(n)    
+        if (this.isEmpty()) {            
             return 'NULL';
         }
 
@@ -164,6 +164,10 @@ export class SinglyLinkedList<T> implements ISinglyLinkedList<T> {
     }
 
     search(data: T): any | null{// O(n)
+        if (this.isEmpty()) {
+            return null;
+        }
+
         let currentNode = this.head;
         let previousNode = null;
         

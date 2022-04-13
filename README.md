@@ -13,11 +13,11 @@ Contain some possibilities of implementations of linked lists
 ```ts
 import { SinglyLinkedList } from 'linked-list-lib';
 
-interface IData {
-    title: string;
+interface IData<T> {
+    name: T;
 }
 
 const linkedList = new SinglyLinkedList<IData<string>>();
 
-linkedList.insertInBegin({ title: 'A'});
+linkedList.insertInBegin({ name: 'A'});
 ```
